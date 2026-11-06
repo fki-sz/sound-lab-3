@@ -1,0 +1,391 @@
+
+/* ==============================
+   ベース設定
+============================== */
+body {
+  margin: 0;
+  background: #99afb0;
+  color: white;
+  font-family: "Cormorant Garamond", "Shippori Mincho", "Yu Mincho", serif;
+  overflow-x: hidden;
+  position: relative;
+  min-height: 100vh;
+}
+
+
+
+/* ==============================
+   左上マスターコントロール（全体音量 ＆ Stop All）
+============================== */
+.top-master-controls {
+  position: fixed;
+  top: 30px;
+  left: 40px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  z-index: 100;
+}
+
+.global-stop-btn {
+  background: rgba(217, 107, 107, 0.8);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  color: #fff;
+  padding: 8px 16px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 14px;
+  font-family: "Cormorant Garamond", serif;
+  transition: 0.2s;
+  backdrop-filter: blur(4px);
+}
+
+.global-stop-btn:hover {
+  background: rgba(217, 107, 107, 1);
+}
+
+.master-vol-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255, 255, 255, 0.15);
+  padding: 6px 14px;
+  border-radius: 20px;
+  backdrop-filter: blur(4px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.master-label {
+  font-size: 13px;
+  letter-spacing: 0.5px;
+}
+
+.master-vol-wrapper .vol-slider {
+  width: 90px;
+}
+
+/* ==============================
+   右上 About ボタン
+============================== */
+.top-about-action {
+  position: fixed;
+  top: 30px;
+  right: 40px;
+  z-index: 100;
+}
+
+.about-top-btn {
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  color: #fff;
+  padding: 8px 20px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 16px;
+  font-family: "Cormorant Garamond", serif;
+  backdrop-filter: blur(4px);
+  transition: 0.2s;
+}
+
+.about-top-btn:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+/* ==============================
+   About モーダル内のテキスト装飾
+============================== */
+.about-body {
+  font-size: 16px;
+  line-height: 1.8;
+  color: rgba(255, 255, 255, 0.9);
+  font-family: "Cormorant Garamond", "Shippori Mincho", "Yu Mincho", serif;
+  letter-spacing: 0.3px;
+}
+
+.about-body p {
+  margin: 0;
+}
+
+
+/* ==============================
+   メイン中央のSound Listボタン
+============================== */
+.main-center-action {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 10;
+}
+
+.primary-btn {
+  background: rgba(255, 255, 255, 0.25);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  color: #fff;
+  padding: 16px 36px;
+  font-size: 20px;
+  font-family: "Kosugi", sans-serif;
+  border-radius: 40px;
+  cursor: pointer;
+  backdrop-filter: blur(8px);
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.primary-btn:hover {
+  background: rgba(255, 255, 255, 0.4);
+  transform: scale(1.05);
+}
+
+/* ==============================
+   モーダル（サウンドリストボックス）
+============================== */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(6px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.modal-overlay.open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.modal-content {
+  background: rgba(37, 50, 58, 0.9);
+  width: 90%;
+  max-width: 520px;
+  max-height: 80vh;
+  display: flex;
+  flex-direction: column;
+  border-radius: 16px;
+  padding: 28px;
+  color: #fff;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  flex-shrink: 0;
+}
+
+.modal-header h2 {
+  margin: 0;
+  font-size: 22px;
+  font-family: "Kosugi", sans-serif;
+  font-weight: normal;
+}
+
+.back-btn {
+  background: rgba(255, 255, 255, 0.15);
+  border: none;
+  color: #fff;
+  padding: 8px 18px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: 0.2s;
+}
+
+.back-btn:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+/* プリセットセクション */
+.preset-section {
+  flex-shrink: 0;
+}
+
+.preset-section h3 {
+  font-size: 23px;
+  opacity: 0.7;
+  margin-bottom: 10px;
+
+
+
+}
+
+.preset-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.preset-btn {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #fff;
+  padding: 6px 12px;
+  border-radius: 12px;
+  font-size: 13px;
+  font-family: "Cormorant Garamond", serif;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+
+
+
+.preset-btn:hover {
+  background: rgba(255, 255, 255, 0.25);
+}
+
+.preset-btn.active-preset {
+  background: rgba(255, 255, 255, 0.4);
+  border-color: rgba(255, 255, 255, 0.8);
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+}
+
+.divider {
+  border: none;
+  border-top: 1px solid rgba(255, 255, 255, 0.15);
+  margin: 20px 0;
+  flex-shrink: 0;
+}
+
+/* ==============================
+   タグ（カテゴリ）切替セクション
+============================== */
+.tag-section {
+  margin-top: 16px;
+  flex-shrink: 0;
+}
+
+.tag-section h3 {
+  font-size: 14px;
+  opacity: 0.7;
+  margin-bottom: 10px;
+}
+
+.tag-buttons {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.tag-btn {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: rgba(255, 255, 255, 0.8);
+  padding: 5px 14px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-family: "Cormorant Garamond", serif;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.tag-btn:hover {
+  background: rgba(255, 255, 255, 0.2);
+  color: #fff;
+}
+
+.tag-btn.active-tag {
+  background: #5b8c85;
+  border-color: #79a8a3;
+  color: #fff;
+}
+
+/* プリセット選択時に出現する Active タブ用の特別なスタイル（必要に応じて） */
+#activePresetTagBtn {
+  border-style: dashed; /* 通常のカテゴリと区別したい場合のデザイン例 */
+}
+
+
+
+/* ==============================
+   サウンドリスト一覧（スクロール対応）
+============================== */
+.sound-list-container {
+  overflow-y: auto;
+  max-height: 320px; /* リストが増えた際にここがスクロールします */
+  padding-right: 4px;
+}
+
+/* スクロールバーのデザイン（美観の調整） */
+.sound-list-container::-webkit-scrollbar {
+  width: 6px;
+}
+.sound-list-container::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 3px;
+}
+
+.sound-item {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 10px;
+  padding: 14px 16px;
+  margin-bottom: 12px;
+  transition: background 0.3s;
+}
+
+.sound-item.active {
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.sound-item-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* リストの絞り込み用（確実に非表示にするため） */
+.sound-item.hidden {
+  display: none !important;
+}
+
+.sound-name {
+  font-size: 16px;
+  font-family: "Kosugi", sans-serif;
+}
+
+.play-toggle-btn {
+  background: #5b8c85;
+  border: none;
+  color: #fff;
+  padding: 6px 16px;
+  border-radius: 16px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: 0.2s;
+}
+
+.play-toggle-btn.playing {
+  background: #d96b6b;
+}
+
+/* 音量スライダー部分 */
+.volume-control-wrapper {
+  margin-top: 12px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  animation: fadeIn 0.3s ease;
+}
+
+.vol-slider {
+  flex: 1;
+  accent-color: #79a8a3;
+  cursor: pointer;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+

@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>soundlab_3</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/bg.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">. 
+</head>
+<body>
+
+  <!-- 背景アニメーション領域（最背面・全画面） -->
+  <div class="area">
+    <ul class="circles">
+      <li></li><li></li><li></li><li></li><li></li>
+      <li></li><li></li><li></li><li></li><li></li>
+    </ul>
+  </div>
+
+ <!-- ホーム画面左上：マスターコントロール（全体音量 ＆ 一時停止/再開ボタン） -->
+  <div class="top-master-controls">
+    <button id="globalPauseBtn" class="global-stop-btn">Pause All</button>
+    <div class="master-vol-wrapper">
+      <span class="master-label">Master Vol</span>
+      <input type="range" id="masterVolumeSlider" class="vol-slider" min="0" max="1" step="0.01" value="0.5">
+    </div>
+  </div>
+
+  <!-- ホーム画面右上：About 呼び出しボタン -->
+  <div class="top-about-action">
+    <button id="openAboutBtn" class="about-top-btn">About</button>
+  </div>
+
+  <!-- About モーダル（サウンドリストと同様のボックス表現） -->
+  <div id="aboutModal" class="modal-overlay">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2>About</h2>
+        <button id="closeAboutBtn" class="back-btn">Back</button>
+      </div>
+      <div class="about-body">
+        <p>This website allows you to mix ambient sounds and transports you to a variety of different spaces. By clicking the sound button in the center of the site, you can access multiple ambient sounds, combine them as you like, and adjust the volume balance to create an experience that feels just right for you. Alternatively, you can select one of our recommended sound presets to enjoy a curated ambient soundscape that immerses you in a specific setting.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ホーム画面中央：Sound List 呼び出しボタン -->
+  <div class="main-center-action">
+    <button id="openSoundListBtn" class="primary-btn">♬</button>
+  </div>
+
+  <!-- サウンドリスト（モーダル） -->
+  <div id="soundModal" class="modal-overlay">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2>Sound Selection</h2>
+        <button id="closeSoundListBtn" class="back-btn">Back</button>
+      </div>
+
+      <!-- おすすめプリセット領域 -->
+      <div class="preset-section">
+        <h3>Presets</h3>
+        <div class="preset-buttons">
+          <button class="preset-btn" data-preset="rainyDay">Rainy Reading</button>
+          <button class="preset-btn" data-preset="forestRelax">Deep Forest</button>
+          <button class="preset-btn" data-preset="bonfireNight">Silent Bonfire</button>
+        
+        </div>
+      </div>
+
+      <!-- サウンドタグ（カテゴリフィルタ）領域 -->
+      <div class="tag-section">
+        <h3>Categories</h3>
+        <div class="tag-buttons">
+          <button class="tag-btn active-tag" data-category="all">All</button>
+          <button class="tag-btn" data-category="water">Water</button>
+          <button class="tag-btn" data-category="wood">Wood</button>
+          <!-- プリセット選択時にアクティブになる「Active」タブ -->
+          <button class="tag-btn" id="activePresetTagBtn" data-category="preset-active" style="display: none;">Active</button>
+        </div>
+      </div>
+
+      <hr class="divider">
+
+      <!-- サウンド一覧（スクロール対応） -->
+      <div id="soundListContainer" class="sound-list-container">
+        <!-- JSでサウンド項目が動的生成されます -->
+      </div>
+    </div>
+  </div>
+
+
+  <!-- 背景カスタマイズ用コントロールパネル（右下） -->
+  <div class="bg-controls">
+    <div class="bg-control-item">
+      <span class="bg-label">Speed</span>
+      <input type="range" id="speedSlider" min="5" max="45" value="25" step="1">
+    </div>
+    <div class="bg-control-item">
+      <span class="bg-label">Tone</span>
+      <select id="toneSelect" class="bg-select">
+        <option value="teal">Teal (Default)</option>
+        <option value="midnight">Midnight Blue</option>
+        <option value="sunset">Warm Sunset</option>
+      </select>
+    </div>
+  </div>
+
+  <script src="js/script.js"></script>
+</body>
+</html>
